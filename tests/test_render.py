@@ -9,9 +9,15 @@ pytestmark = pytest.mark.skipif(SKIP is not None, reason=SKIP or "")
 R, L = READING, LIVE
 
 
+VERSION_HELP = "Obsidian {} ran; copy obsidian-1.14.x.asar into ~/.config/obsidian or set DEEPWICK_OBSIDIAN_ASAR"
+
+
 @pytest.fixture(scope="module")
 def app(tmp_path_factory):
     with obsidian(tmp_path_factory.mktemp("obsidian")) as running:
+        version = running.version()
+        if not version.startswith("1.14."):
+            pytest.fail(VERSION_HELP.format(version), pytrace=False)
         yield running
 
 
@@ -33,9 +39,7 @@ def color(app, selector, prop="color"):
 
 def test_runs_tested_version(app):
     version = app.version()
-    assert version.startswith("1.14."), (
-        f"Obsidian {version} ran; copy obsidian-1.14.x.asar into ~/.config/obsidian or set DEEPWICK_OBSIDIAN_ASAR"
-    )
+    assert version.startswith("1.14."), VERSION_HELP.format(version)
 
 
 def test_no_modal_on_launch(app):

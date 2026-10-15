@@ -44,6 +44,9 @@ To uninstall, choose another theme and delete the `Deepwick` folder.
   highlighting (CodeMirror legacy modes) colors class names like function
   names (Yellow), calls like variables (Light Blue), and `None` like a keyword
   (Blue).
+  Deepwick colors CodeMirror's definition and meta tokens Yellow for Python
+  function names and decorators, so in Live Preview JavaScript/TypeScript
+  variable declarations and C preprocessor lines are Yellow too.
 
 Tested with Obsidian 1.14.4 on Linux.
 

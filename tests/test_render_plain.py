@@ -22,6 +22,19 @@ def processes_using(path: Path) -> list[str]:
     return hits
 
 
+def virtual_kwins() -> list[str]:
+    """vshot's KWin, found by command line: its environ is unreadable (cap_sys_nice)."""
+    hits = []
+    for cmdline in Path("/proc").glob("[0-9]*/cmdline"):
+        try:
+            args = cmdline.read_bytes()
+        except OSError:
+            continue
+        if args.startswith(b"kwin_wayland\0--virtual\0") and b"\0wayland-deepwick\0" in args:
+            hits.append(cmdline.parent.name)
+    return hits
+
+
 def test_without_theme_is_not_deepwick(tmp_path):
     with obsidian(tmp_path, theme=False) as app:
         app.show("Welcome.md", "preview")
@@ -40,8 +53,10 @@ def test_light_mode_is_not_deepwick(tmp_path):
 def test_aborted_run_leaves_nothing_behind(tmp_path):
     with pytest.raises(RuntimeError, match="boom"):
         with obsidian(tmp_path):
+            assert virtual_kwins(), "the KWin check must see the running KWin"
             raise RuntimeError("boom")
     deadline = time.monotonic() + 10
-    while processes_using(tmp_path) and time.monotonic() < deadline:
+    while (processes_using(tmp_path) or virtual_kwins()) and time.monotonic() < deadline:
         time.sleep(0.5)
     assert processes_using(tmp_path) == []
+    assert virtual_kwins() == []
