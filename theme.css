@@ -1,0 +1,150 @@
+/* Deepwick for Obsidian. Unofficial theme derived from Polywick Blue by Polywick Studio (MIT). Dark only. */
+
+.theme-dark {
+  --color-base-00: #04041a;
+  --color-base-05: #04041a;
+  --color-base-10: #10192c;
+  --color-base-20: #10192c;
+  --color-base-25: #1b2140;
+  --color-base-30: #1b2140;
+  --color-base-35: #1b2140;
+  --color-base-40: #6e7899;
+  --color-base-50: #6e7899;
+  --color-base-60: #7a86a8;
+  --color-base-70: #7a86a8;
+  --color-base-100: #d4d4d4;
+
+  --color-red: #f44747;
+  --color-red-rgb: 244, 71, 71;
+  --color-orange: #ce9178;
+  --color-orange-rgb: 206, 145, 120;
+  --color-yellow: #dcdcaa;
+  --color-yellow-rgb: 220, 220, 170;
+  --color-green: #57a64a;
+  --color-green-rgb: 87, 166, 74;
+  --color-cyan: #4fc1ff;
+  --color-cyan-rgb: 79, 193, 255;
+  --color-blue: #569cd6;
+  --color-blue-rgb: 86, 156, 214;
+  --color-purple: #c586c0;
+  --color-purple-rgb: 197, 134, 192;
+  --color-pink: #d16969;
+  --color-pink-rgb: 209, 105, 105;
+
+  --accent-h: 207;
+  --accent-s: 61%;
+  --accent-l: 59%;
+  --color-accent: #569cd6;
+  --color-accent-1: #9cdcfe;
+  --color-accent-2: #9cdcfe;
+
+  --background-primary: #04041a;
+  --background-primary-alt: #10192c;
+  --background-secondary: #10192c;
+  --background-secondary-alt: #1b2140;
+  --background-modifier-border: #1b2140;
+  --background-modifier-border-hover: #6e7899;
+  --background-modifier-border-focus: #569cd6;
+  --background-modifier-hover: #1b2140;
+  --background-modifier-active-hover: #1b2140;
+  --background-modifier-form-field: #04041a;
+  --background-modifier-error: #f44747;
+  --background-modifier-success: #57a64a;
+  --titlebar-background: #10192c;
+  --titlebar-background-focused: #10192c;
+  --tab-container-background: #10192c;
+
+  --text-normal: #d4d4d4;
+  --text-muted: #7a86a8;
+  --text-faint: #6e7899;
+  --text-accent: #569cd6;
+  --text-accent-hover: #9cdcfe;
+  --text-on-accent: #04041a;
+  --text-on-accent-inverted: #04041a;
+  --text-selection: #264f78;
+  --text-error: #f44747;
+  --text-warning: #dcdcaa;
+  --text-success: #57a64a;
+  --caret-color: #d4d4d4;
+
+  --interactive-normal: #1b2140;
+  --interactive-hover: #264f78;
+  --interactive-accent: #569cd6;
+  --interactive-accent-hover: #9cdcfe;
+
+  --h1-color: #569cd6;
+  --h2-color: #569cd6;
+  --h3-color: #569cd6;
+  --h4-color: #569cd6;
+  --h5-color: #569cd6;
+  --h6-color: #569cd6;
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 700;
+  --h4-weight: 700;
+  --h5-weight: 700;
+  --h6-weight: 700;
+  --inline-title-color: #569cd6;
+  --inline-title-weight: 700;
+  --bold-color: #d4d4d4;
+  --italic-color: #d4d4d4;
+
+  --link-color: #ce9178;
+  --link-color-hover: #d7ba7d;
+  --link-external-color: #ce9178;
+  --link-external-color-hover: #d7ba7d;
+  --link-unresolved-color: #ce9178;
+
+  --blockquote-color: #7a86a8;
+  --blockquote-border-color: #6e7899;
+  --hr-color: #6e7899;
+  --list-marker-color: #6e7899;
+  --tag-color: #4ec9b0;
+  --tag-color-hover: #4ec9b0;
+  --tag-background: #10192c;
+  --tag-background-hover: #1b2140;
+  --text-highlight-bg: #264f78;
+  --checkbox-color: #569cd6;
+  --checkbox-color-hover: #9cdcfe;
+  --checkbox-border-color: #6e7899;
+  --checkbox-marker-color: #04041a;
+  --table-border-color: #1b2140;
+  --table-header-background: #10192c;
+  --table-header-color: #d4d4d4;
+
+  --code-background: #10192c;
+  --code-normal: #d4d4d4;
+  --code-keyword: #569cd6;
+  --code-function: #dcdcaa;
+  --code-property: #9cdcfe;
+  --code-string: #ce9178;
+  --code-value: #b5cea8;
+  --code-comment: #7a86a8;
+  --code-operator: #d4d4d4;
+  --code-punctuation: #6e7899;
+  --code-tag: #569cd6;
+  --code-important: #d16969;
+
+  --callout-default: #569cd6;
+  --callout-info: #569cd6;
+  --callout-todo: #569cd6;
+  --callout-tip: #4ec9b0;
+  --callout-summary: #4ec9b0;
+  --callout-important: #4ec9b0;
+  --callout-success: #57a64a;
+  --callout-question: #d7ba7d;
+  --callout-warning: #dcdcaa;
+  --callout-fail: #f44747;
+  --callout-error: #f44747;
+  --callout-bug: #f44747;
+  --callout-example: #c586c0;
+  --callout-quote: #7a86a8;
+
+  --graph-line: #1b2140;
+  --graph-node: #7a86a8;
+  --graph-node-focused: #569cd6;
+  --graph-node-tag: #4ec9b0;
+  --graph-node-attachment: #57a64a;
+  --graph-node-unresolved: #6e7899;
+  --graph-text: #d4d4d4;
+}
