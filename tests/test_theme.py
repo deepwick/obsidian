@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 
+from deepwick_spec.check_port import check_port
 from deepwick_spec.palette import load_palette
 
 REPO = Path(__file__).resolve().parents[1]
@@ -145,3 +146,13 @@ def test_store_guidelines():
     text = css()
     for banned in ("!important", "url(", "@"):
         assert banned not in text, f"theme.css contains {banned!r}"
+
+
+def test_port_conventions():
+    assert check_port(REPO, PALETTE.allowed_hex()) == []
+
+
+def test_readme_installs_both_files_into_the_theme_folder():
+    readme = (REPO / "README.md").read_text(encoding="utf-8")
+    assert '.obsidian/themes/Deepwick"' in readme
+    assert "cp theme.css manifest.json" in readme
