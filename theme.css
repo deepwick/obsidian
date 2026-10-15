@@ -148,3 +148,34 @@
   --graph-node-unresolved: #6e7899;
   --graph-text: #d4d4d4;
 }
+
+
+/* Rules for roles Obsidian's variables can't express. */
+
+.theme-dark .cm-s-obsidian span.cm-inline-code:not(.cm-hmd-indented-code),
+.theme-dark .markdown-rendered :not(pre) > code {
+  color: #ce9178;
+}
+
+.theme-dark .cm-s-obsidian .cm-type,
+.theme-dark .markdown-rendered .token.class-name {
+  color: #4ec9b0;
+}
+
+.theme-dark .cm-s-obsidian .HyperMD-codeblock .cm-property,
+.theme-dark .cm-s-obsidian .HyperMD-codeblock .cm-attribute {
+  color: #9cdcfe;
+}
+
+.theme-dark .cm-s-obsidian .HyperMD-codeblock .cm-def,
+.theme-dark .cm-s-obsidian .HyperMD-codeblock .cm-meta,
+.theme-dark .markdown-rendered .token.decorator {
+  color: #dcdcaa;
+}
+
+.theme-dark .cm-s-obsidian .cm-comment,
+.theme-dark .markdown-rendered .token.comment,
+.theme-dark .markdown-rendered blockquote,
+.theme-dark .cm-s-obsidian .HyperMD-quote {
+  font-style: italic;
+}
