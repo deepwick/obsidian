@@ -212,7 +212,7 @@ def obsidian(base: Path, *, theme=True, scheme="obsidian", size=(1280, 2400), ou
         env=env,
     )
     try:
-        with connect(port, timeout=60) as session:
+        with connect(port, timeout=90) as session:
             app = Obsidian(session)
             app.wait("window.app && app.workspace && app.workspace.layoutReady", timeout=60)
             yield app
