@@ -69,7 +69,11 @@ def find_obsidian() -> Path | None:
 
 def find_asar() -> Path | None:
     if raw := os.environ.get("DEEPWICK_OBSIDIAN_ASAR"):
-        return Path(raw)
+        path = Path(raw)
+        if not (_ASAR.fullmatch(path.name) and path.is_file()):
+            raise ValueError(f"DEEPWICK_OBSIDIAN_ASAR must be an existing obsidian-X.Y.Z.asar file "
+                             f"(Obsidian's bootstrapper loads only that name): {raw}")
+        return path
     config = Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "obsidian"
     found = []
     for path in config.glob("obsidian-*.asar"):
@@ -102,6 +106,7 @@ def build_profile(base: Path, *, theme: bool, scheme: str, size: tuple[int, int]
         shutil.copy2(REPO / name, theme_dir / name)
     appearance = {"cssTheme": "Deepwick" if theme else "", "theme": scheme}
     (vault / ".obsidian" / "appearance.json").write_text(json.dumps(appearance))
+    (vault / ".obsidian" / "core-plugins.json").write_text(json.dumps({"sync": False}))
     registry = {
         "vaults": {VAULT_ID: {"path": str(vault), "ts": int(time.time() * 1000), "open": True}},
         "updateDisabled": True,

@@ -1,6 +1,8 @@
+import json
+
 import pytest
 
-from obsidian_run import find_asar, hexcolor
+from obsidian_run import build_profile, find_asar, hexcolor
 
 
 def test_hexcolor():
@@ -24,8 +26,27 @@ def test_find_asar_picks_the_newest_version(tmp_path, monkeypatch):
 
 
 def test_find_asar_env_override(tmp_path, monkeypatch):
-    monkeypatch.setenv("DEEPWICK_OBSIDIAN_ASAR", str(tmp_path / "custom.asar"))
-    assert find_asar() == tmp_path / "custom.asar"
+    asar = tmp_path / "obsidian-1.9.14.asar"
+    asar.write_bytes(b"")
+    monkeypatch.setenv("DEEPWICK_OBSIDIAN_ASAR", str(asar))
+    assert find_asar() == asar
+
+
+@pytest.mark.parametrize("name", ["custom.asar", "obsidian-latest.asar", "missing/obsidian-1.9.14.asar"])
+def test_find_asar_env_override_must_be_a_versioned_file(tmp_path, monkeypatch, name):
+    path = tmp_path / name
+    if "missing" not in name:
+        path.write_bytes(b"")
+    monkeypatch.setenv("DEEPWICK_OBSIDIAN_ASAR", str(path))
+    with pytest.raises(ValueError, match=r"obsidian-X\.Y\.Z\.asar"):
+        find_asar()
+
+
+def test_build_profile_turns_sync_off(tmp_path, monkeypatch):
+    monkeypatch.delenv("DEEPWICK_OBSIDIAN_ASAR", raising=False)
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path / "none"))
+    vault = build_profile(tmp_path / "p", theme=True, scheme="obsidian", size=(800, 600))
+    assert json.loads((vault / ".obsidian" / "core-plugins.json").read_text())["sync"] is False
 
 
 def test_find_asar_none(tmp_path, monkeypatch):
